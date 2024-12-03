@@ -18,66 +18,109 @@
       background-color: var(--blue);
       color: var(--white);
       display: flex;
-      flex-direction: column;
       justify-content: center;
       align-items: center;
       min-height: 100vh;
+      padding: 0 1rem;
     }
 
-    .page-title {
-      font-size: 2rem;
-      font-weight: bold;
-      color: var(--orange);
-      margin-bottom: 1rem;
-    }
-
-    .content-box {
+    .container {
+      display: flex;
+      flex-direction: row;
+      max-width: 1200px;
+      width: 100%;
+      border-radius: 20px;
       background-color: var(--white);
       color: var(--blue);
-      border-radius: 20px;
+      overflow: hidden;
+      box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+    }
+
+    /* Estilo para móviles (pantallas pequeñas) */
+    @media (max-width: 768px) {
+      .container {
+        flex-direction: column;
+      }
+
+      .content, .image-container {
+        width: 100%;
+        text-align: center;
+      }
+
+      .image-container img {
+        max-width: 90%;
+      }
+    }
+
+    .content {
+      flex: 1;
       padding: 2rem;
-      width: 90%;
-      max-width: 500px;
-      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-      text-align: center;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
     }
 
-    .content-box img {
-      width: 100%;
-      border-radius: 10px;
+    .content h1 {
+      font-size: 2.5rem;
       margin-bottom: 1rem;
+      color: var(--orange);
     }
 
-    .home-button {
-      margin-top: 2rem;
-      background-color: var(--blue);
-      color: var(--orange);
-      border: 2px solid var(--orange);
-      padding: 0.8rem 1.5rem;
-      border-radius: 20px;
+    .content p {
+      font-size: 1.2rem;
+      line-height: 1.6;
+      margin-bottom: 2rem;
+    }
+
+    .content .menu-button {
+      background-color: var(--orange);
+      color: var(--white);
+      border: none;
+      border-radius: 30px;
+      padding: 1rem 2rem;
       font-size: 1rem;
       font-weight: bold;
       cursor: pointer;
+      transition: background-color 0.3s, transform 0.3s;
+      align-self: start;
       text-decoration: none;
-      transition: background-color 0.2s, color 0.2s;
     }
 
-    .home-button:hover {
-      background-color: var(--orange);
-      color: var(--white);
+    .content .menu-button:hover {
+      background-color: var(--blue);
+      color: var(--orange);
+      transform: scale(1.05);
+    }
+
+    .image-container {
+      flex: 1;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      background-color: var(--yellow);
+    }
+
+    .image-container img {
+      max-width: 80%;
+      height: auto;
+      border-radius: 10px;
     }
   </style>
 </head>
 <body>
-<h1 class="page-title">About Me</h1>
-<div class="content-box">
-  <img src="example.jpg" alt="Example Content">
-  <p>Actual estudiante de 2n de DAM con fuerte voluntad de trabajo, busco oportunidades para expandir mis habilidades
-    como programador. Poseo experiencia previa en el sector de la hostelería, zelador y mecánico. Esfuerzo máximo
-    para adaptarme rápidamente y enfrentar los problemas con determinación.
-    Además de mi compromiso con el trabajo, también realizo actividades deportivas frecuentemente. Durante varios
-    años he estado federado en remo y actualmente en espeleología, lo que demuestra mi dedicación y disciplina.</p>
+<div class="container">
+  <!-- Contenido de texto -->
+  <div class="content">
+    <h1>About Me</h1>
+    <p>
+      I am Angel Sola, a passionate UI/UX designer and web developer. I love creating intuitive and visually appealing designs that bring ideas to life. Let’s build something amazing together!
+    </p>
+    <a href="index.html" class="menu-button">HOME</a>
+  </div>
+  <!-- Contenedor de la imagen -->
+  <div class="image-container">
+    <img src="resources/images/example1.png" alt="Profile image">
+  </div>
 </div>
-<a href="index.html" class="home-button">HOME</a>
 </body>
 </html>
