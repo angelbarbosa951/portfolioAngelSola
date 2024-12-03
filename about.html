@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>About Me</title>
+  <style>
+    :root {
+      --blue: #040FA9;
+      --orange: #F66719;
+      --yellow: #F0B94F;
+      --white: #FFFFFF;
+    }
+
+    body {
+      margin: 0;
+      font-family: Arial, sans-serif;
+      background-color: var(--blue);
+      color: var(--white);
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      min-height: 100vh;
+    }
+
+    .page-title {
+      font-size: 2rem;
+      font-weight: bold;
+      color: var(--orange);
+      margin-bottom: 1rem;
+    }
+
+    .content-box {
+      background-color: var(--white);
+      color: var(--blue);
+      border-radius: 20px;
+      padding: 2rem;
+      width: 90%;
+      max-width: 500px;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+      text-align: center;
+    }
+
+    .content-box img {
+      width: 100%;
+      border-radius: 10px;
+      margin-bottom: 1rem;
+    }
+
+    .home-button {
+      margin-top: 2rem;
+      background-color: var(--blue);
+      color: var(--orange);
+      border: 2px solid var(--orange);
+      padding: 0.8rem 1.5rem;
+      border-radius: 20px;
+      font-size: 1rem;
+      font-weight: bold;
+      cursor: pointer;
+      text-decoration: none;
+      transition: background-color 0.2s, color 0.2s;
+    }
+
+    .home-button:hover {
+      background-color: var(--orange);
+      color: var(--white);
+    }
+  </style>
+</head>
+<body>
+<h1 class="page-title">About Me</h1>
+<div class="content-box">
+  <img src="example.jpg" alt="Example Content">
+  <p>Actual estudiante de 2n de DAM con fuerte voluntad de trabajo, busco oportunidades para expandir mis habilidades
+    como programador. Poseo experiencia previa en el sector de la hostelería, zelador y mecánico. Esfuerzo máximo
+    para adaptarme rápidamente y enfrentar los problemas con determinación.
+    Además de mi compromiso con el trabajo, también realizo actividades deportivas frecuentemente. Durante varios
+    años he estado federado en remo y actualmente en espeleología, lo que demuestra mi dedicación y disciplina.</p>
+</div>
+<a href="index.html" class="home-button">HOME</a>
+</body>
+</html>
