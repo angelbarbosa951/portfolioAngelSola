@@ -62,7 +62,8 @@ body {
 
 .subtitle {
   font-size: 1.5rem;
-  border-right: 2px solid #ffffff;
+  color: #FFD700; /* Color oro */
+  border-right: 2px solid #FFD700; /* Cursor del mismo color */
   white-space: nowrap;
   overflow: hidden;
 }
@@ -72,6 +73,17 @@ body {
   font-size: 1rem;
 }
 
+#cursor {
+  display: inline-block;
+  color: #FFD700; /* El mismo color que el texto */
+  animation: blink 1s step-start infinite;
+}
+
+@keyframes blink {
+  50% {
+    opacity: 0;
+  }
+}
 .email {
   color: #00e0ff;
   text-decoration: none;
@@ -173,5 +185,7 @@ body {
 
   .social-links {
     justify-content: center;
+  }
+
   }
 }
