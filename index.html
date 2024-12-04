@@ -4,97 +4,12 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Responsive Web Menu</title>
-  <style>
-    /* Variables de color */
-    :root {
-      --blue: #040FA9;
-      --orange: #F66719;
-      --yellow: #F0B94F;
-      --white: #FFFFFF;
-      --hover-orange: #d95515;
-      --hover-yellow: #d9a73e;
-    }
-
-    /* Estilos generales */
-    body {
-      margin: 0;
-      font-family: Arial, sans-serif;
-      background-color: var(--blue);
-      color: var(--white);
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-      align-items: center;
-      min-height: 100vh;
-      padding: 0 10px;
-      box-sizing: border-box;
-    }
-
-    .title {
-      color: var(--orange);
-      font-size: 2rem;
-      font-weight: bold;
-      margin-bottom: 2rem;
-      text-align: center;
-    }
-
-    /* Estilos del menú */
-    .menu {
-      display: flex;
-      flex-direction: column;
-      gap: 1rem;
-      width: 100%;
-      max-width: 400px;
-    }
-
-    .menu-item {
-      background-color: var(--white);
-      color: var(--blue);
-      text-align: center;
-      padding: 1rem;
-      border-radius: 30px;
-      font-size: 1.2rem;
-      font-weight: bold;
-      text-decoration: none;
-      transition: transform 0.2s, background-color 0.2s, color 0.2s;
-      border: 2px solid var(--blue);
-    }
-
-    .menu-item:hover {
-      transform: scale(1.05);
-      background-color: var(--orange);
-      color: var(--white);
-    }
-
-    .menu-item:nth-child(3) {
-      background-color: var(--white);
-      color: var(--blue);
-      border: 2px solid var(--blue);
-    }
-
-    .menu-item:nth-child(3):hover {
-      background-color: var(--orange);
-      color: var(--white);
-    }
-
-    .menu-item:active {
-      transform: scale(0.95);
-    }
-
-    /* Media Queries para hacerlo responsive */
-    @media (max-width: 600px) {
-      .title {
-        font-size: 1.5rem;
-      }
-
-      .menu-item {
-        font-size: 1rem;
-        padding: 0.8rem;
-      }
-    }
-  </style>
+  <link rel="stylesheet" href="styles.css">
 </head>
 <body>
+<!-- Contenedor para las burbujas -->
+<div class="bubbles-container"></div>
+
 <!-- Título de bienvenida -->
 <h1 class="title">WELCOME! I'M ÀNGEL SOLÀ</h1>
 
@@ -106,5 +21,36 @@
   <a href="platforms.html" class="menu-item">Contact</a>
   <a href="portfolio.html" class="menu-item">My github</a>
 </div>
+
+<script>
+  // Crear burbujas dinámicamente
+  const container = document.querySelector('.bubbles-container');
+
+  function createBubble() {
+    const bubble = document.createElement('div');
+    bubble.classList.add('bubble');
+
+    // Posición y tamaño aleatorio
+    const size = Math.random() * 60 + 20; // Tamaño entre 20px y 80px
+    bubble.style.width = `${size}px`;
+    bubble.style.height = `${size}px`;
+    bubble.style.left = `${Math.random() * 100}%`;
+
+    // Duración y retraso aleatorio
+    const duration = Math.random() * 5 + 5; // Entre 5 y 10 segundos
+    bubble.style.animationDuration = `${duration}s`;
+    bubble.style.animationDelay = `${Math.random() * 2}s`;
+
+    container.appendChild(bubble);
+
+    // Eliminar la burbuja después de la animación
+    bubble.addEventListener('animationend', () => {
+      bubble.remove();
+    });
+  }
+
+  // Crear burbujas constantemente
+  setInterval(createBubble, 500);
+</script>
 </body>
 </html>
