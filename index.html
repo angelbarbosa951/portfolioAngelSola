@@ -6,25 +6,29 @@
   <title>Responsive Web Menu</title>
   <link rel="stylesheet" href="styles.css">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css">
-
 </head>
 <body>
-<!-- Contenedor para las burbujas -->
-<div class="bubbles-container"></div>
 
-<!-- Título de bienvenida -->
+<video id="video-bg" autoplay muted loop>
+  <source src="video-pc.mp4" type="video/mp4">
+</video>
+
+<div id="tsparticles"></div>
+<!--
+<div class="bubbles-container"></div>
+-->
+
 <h1 class="title animate__animated animate__bounce">WELCOME! I'M ÀNGEL SOLÀ</h1>
 
 <!-- Menú principal -->
 <div class="menu">
-  <a href="about.html" class="menu-item animate__animated animate__fadeInLeftBig">About me</a>
-  <a href="tools.html" class="menu-item animate__animated animate__fadeInRightBig">Laboral experience</a>
-  <a href="estimate.html" class="menu-item animate__animated animate__fadeInLeftBig">Education</a>
-  <a href="platforms.html" class="menu-item animate__animated animate__fadeInRightBig">Contact</a>
-  <a href="portfolio.html" class="menu-item animate__animated animate__fadeInLeftBig">My github</a>
+  <a href="about.html" class="menu-item animate__animated animate__fadeInLeft" style="animation-delay: 0.2s;">About me</a>
+  <a href="tools.html" class="menu-item animate__animated animate__fadeInLeft" style="animation-delay: 0.4s;">Laboral experience</a>
+  <a href="estimate.html" class="menu-item animate__animated animate__fadeInLeft" style="animation-delay: 0.6s;">Education</a>
+  <a href="platforms.html" class="menu-item animate__animated animate__fadeInLeft" style="animation-delay: 0.8s;">Contact</a>
+  <a href="portfolio.html" class="menu-item animate__animated animate__fadeInLeft" style="animation-delay: 1s;">My github</a>
 </div>
 
-<script src="bubles.js"></script>
-
+<!-- <script src="bubles.js"></script> -->
 </body>
 </html>
