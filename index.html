@@ -5,52 +5,26 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Responsive Web Menu</title>
   <link rel="stylesheet" href="styles.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css">
+
 </head>
 <body>
 <!-- Contenedor para las burbujas -->
 <div class="bubbles-container"></div>
 
 <!-- Título de bienvenida -->
-<h1 class="title">WELCOME! I'M ÀNGEL SOLÀ</h1>
+<h1 class="title animate__animated animate__bounce">WELCOME! I'M ÀNGEL SOLÀ</h1>
 
 <!-- Menú principal -->
 <div class="menu">
-  <a href="about.html" class="menu-item">About me</a>
-  <a href="tools.html" class="menu-item">Laboral experience</a>
-  <a href="estimate.html" class="menu-item">Education</a>
-  <a href="platforms.html" class="menu-item">Contact</a>
-  <a href="portfolio.html" class="menu-item">My github</a>
+  <a href="about.html" class="menu-item animate__animated animate__fadeInLeftBig">About me</a>
+  <a href="tools.html" class="menu-item animate__animated animate__fadeInRightBig">Laboral experience</a>
+  <a href="estimate.html" class="menu-item animate__animated animate__fadeInLeftBig">Education</a>
+  <a href="platforms.html" class="menu-item animate__animated animate__fadeInRightBig">Contact</a>
+  <a href="portfolio.html" class="menu-item animate__animated animate__fadeInLeftBig">My github</a>
 </div>
 
-<script>
-  // Crear burbujas dinámicamente
-  const container = document.querySelector('.bubbles-container');
+<script src="bubles.js"></script>
 
-  function createBubble() {
-    const bubble = document.createElement('div');
-    bubble.classList.add('bubble');
-
-    // Posición y tamaño aleatorio
-    const size = Math.random() * 60 + 20; // Tamaño entre 20px y 80px
-    bubble.style.width = `${size}px`;
-    bubble.style.height = `${size}px`;
-    bubble.style.left = `${Math.random() * 100}%`;
-
-    // Duración y retraso aleatorio
-    const duration = Math.random() * 5 + 5; // Entre 5 y 10 segundos
-    bubble.style.animationDuration = `${duration}s`;
-    bubble.style.animationDelay = `${Math.random() * 2}s`;
-
-    container.appendChild(bubble);
-
-    // Eliminar la burbuja después de la animación
-    bubble.addEventListener('animationend', () => {
-      bubble.remove();
-    });
-  }
-
-  // Crear burbujas constantemente
-  setInterval(createBubble, 500);
-</script>
 </body>
 </html>
