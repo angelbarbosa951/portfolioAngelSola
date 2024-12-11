@@ -17,24 +17,6 @@ document.addEventListener("DOMContentLoaded", () => {
         );
     });
 
-    const observer = new IntersectionObserver(
-        (entries) => {
-            entries.forEach((entry) => {
-                const id = entry.target.getAttribute("id");
-                if (entry.isIntersecting) {
-                    menuLinks.forEach((link) => {
-                        link.classList.remove("active");
-                        if (link.getAttribute("href") === `#${id}`) {
-                            link.classList.add("active");
-                        }
-                    });
-                }
-            });
-        },
-        { threshold: 0.5 }
-    );
-
-    sections.forEach((section) => observer.observe(section));
 
     expandButtons.forEach((button) => {
         button.addEventListener("click", (event) => {

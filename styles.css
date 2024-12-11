@@ -88,31 +88,3 @@ footer {
     color: #888;
     margin-top: 2rem;
 }
-.side-menu {
-    position: fixed;
-    top: 50%;
-    right: 1rem;
-    transform: translateY(-50%);
-    background: rgba(0, 0, 0, 0.7);
-    padding: 1rem;
-    border-radius: 12px;
-    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.5);
-}
-.side-menu ul {
-    list-style: none;
-    margin: 0;
-    padding: 0;
-}
-.side-menu ul li {
-    margin: 0.5rem 0;
-}
-.side-menu ul li .menu-link {
-    color: #e0e0ff;
-    text-decoration: none;
-    font-size: 1rem;
-    transition: color 0.3s;
-}
-.side-menu ul li .menu-link.active {
-    color: #ff9d00;
-    font-weight: bold;
-}
