@@ -119,8 +119,18 @@ footer {
     z-index: 1000;
     border-bottom: 3px solid #ff007c;
     display: flex;
-    justify-content: space-between;
+    justify-content: center; /* Centra los elementos horizontalmente */
     align-items: center;
+}
+
+/* Contenedor para centrar menú y botón */
+.nav-container {
+    display: flex;
+    justify-content: space-between; /* Espacio entre botón y enlaces */
+    align-items: center;
+    width: 100%;
+    max-width: 1200px; /* Limita el ancho del menú */
+    padding: 0 1rem; /* Espaciado lateral */
 }
 
 /* Botón del menú hamburguesa */
@@ -157,7 +167,7 @@ footer {
 /* Responsive para pantallas pequeñas */
 @media (max-width: 768px) {
     .menu-toggle {
-        display: block;
+        display: block; /* Muestra el botón hamburguesa */
     }
 
     .nav-links {
@@ -182,4 +192,5 @@ footer {
         text-align: center;
     }
 }
+
 
