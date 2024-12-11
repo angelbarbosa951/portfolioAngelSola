@@ -46,6 +46,40 @@ ul li {
     padding: 0.8rem;
     border-radius: 8px;
     color: #fff;
+    position: relative;
+}
+.skill-item {
+    cursor: pointer;
+    transition: background 0.3s;
+}
+.skill-item:hover {
+    background: #344b70;
+}
+.expand-btn {
+    position: absolute;
+    right: 10px;
+    top: 50%;
+    transform: translateY(-50%);
+    background: #ff9d00;
+    border: none;
+    color: #111;
+    border-radius: 50%;
+    width: 24px;
+    height: 24px;
+    font-size: 1rem;
+    font-weight: bold;
+    cursor: pointer;
+    transition: background 0.3s;
+}
+.expand-btn:hover {
+    background: #ff007c;
+}
+.skill-details {
+    display: none;
+    padding: 0.5rem;
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 8px;
+    margin-top: 0.5rem;
 }
 footer {
     text-align: center;
