@@ -48,6 +48,21 @@ document.addEventListener("DOMContentLoaded", () => {
             });
         });
 
+        expandButtons.forEach((button) => {
+            button.addEventListener("click", (event) => {
+                const skillItem = event.target.closest(".project-item");
+                const details = skillItem.querySelector(".project-details");
+
+                if (details.style.display === "block") {
+                    details.style.display = "none";
+                    button.textContent = "+";
+                } else {
+                    details.style.display = "block";
+                    button.textContent = "-";
+                }
+            });
+        });
+
     const header = document.querySelector("header");
     gsap.fromTo(
         header,

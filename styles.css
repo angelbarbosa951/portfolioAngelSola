@@ -88,6 +88,21 @@ ul li {
     border-radius: 8px;
     margin-top: 0.5rem;
 }
+.project-details {
+    display: none;
+    padding: 0.5rem;
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 8px;
+    margin-top: 0.5rem;
+    text-align: center; /* Centra la imagen y el texto */
+}
+.project-image {
+    width: 300px; /* Ancho completo del contenedor */
+    height: 200px; /* Altura fija para uniformidad */
+    object-fit: cover; /* Ajusta la imagen dentro del espacio sin deformarla */
+    border-radius: 8px; /* Opcional: bordes redondeados para un diseño más atractivo */
+    margin: 10px 0;
+}
 footer {
     text-align: center;
     padding: 1rem;
