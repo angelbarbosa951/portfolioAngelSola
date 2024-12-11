@@ -3,52 +3,70 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Àngel Solà - Portfolio</title>
+  <title>Retro Futuristic Portfolio - Angel Sola</title>
   <link rel="stylesheet" href="styles.css">
-  <script defer src="scripts.js"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css">
+  <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
 </head>
 <body>
-<div class="container">
-  <!-- Sidebar -->
-  <aside class="sidebar">
-    <!-- Icono -->
-    <div class="profile-icon">
-      <img src="informatica.png" alt="Icono de perfil" />
-    </div>
+<header class="animate__animated animate__fadeInDown">
+  <h1>Angel Sola</h1>
+  <p>Retro-Futuristic Portfolio & Curriculum</p>
+</header>
 
-    <div class="hamburger" onclick="toggleMenu()">
-      <div class="line"></div>
-      <div class="line"></div>
-      <div class="line"></div>
-    </div>
+<nav class="side-menu">
+  <ul>
+    <li><a href="#about" class="menu-link">About Me</a></li>
+    <li><a href="#skills" class="menu-link">Skills</a></li>
+    <li><a href="#experience" class="menu-link">Experience</a></li>
+    <li><a href="#education" class="menu-link">Education</a></li>
+    <li><a href="#contact" class="menu-link">Contact</a></li>
+  </ul>
+</nav>
 
-    <!-- Menú -->
-    <nav class="menu">
-      <a href="#sobre-mi" class="menu-item">Sobre mí</a>
-      <a href="#portfolio" class="menu-item">Portafolio</a>
-      <a href="#educacion" class="menu-item">Educación</a>
-      <a href="#skills" class="menu-item">Skills</a>
-      <a href="#contacto" class="menu-item">Contacto</a>
-    </nav>
-  </aside>
+<div class="container animate__animated animate__fadeInUp">
+  <section id="about">
+    <h2 class="section-title">About Me</h2>
+    <p>I am a passionate developer with experience in web design, software engineering, and futuristic thinking. My goal is to bring innovation to life with creative and functional solutions.</p>
+  </section>
 
-  <!-- Main Content -->
-  <main class="content">
-    <h1 class="title">ÀNGEL SOLÀ</h1>
-    <p class="subtitle" id="typing-text"></p>
-    <p class="contact-text">
-      Si quieres ponerte en contacto conmigo, escríbeme a
-      <a href="angelsola2004@gmailcom" class="email">angelsola2004@gmail.com</a>.
-    </p>
-    <button class="download-btn">Descarga mi CV</button>
+  <section id="skills">
+    <h2 class="section-title">Skills</h2>
+    <ul>
+      <li>Programming: JavaScript, Python, HTML, CSS</li>
+      <li>Design Tools: Figma, Photoshop</li>
+      <li>Frameworks: React, Node.js</li>
+      <li>Project Management: Agile, Scrum</li>
+    </ul>
+  </section>
 
-    <!-- Social Links -->
-    <div class="social-links">
-      <a href="#" class="social-icon">LinkedIn</a>
-      <a href="#" class="social-icon">GitHub</a>
-      <a href="#" class="social-icon">Instagram</a>
-    </div>
-  </main>
+  <section id="experience">
+    <h2 class="section-title">Experience</h2>
+    <ul>
+      <li>Web Developer - XYZ Company (2022-Present)</li>
+      <li>Software Engineer - ABC Tech (2019-2022)</li>
+    </ul>
+  </section>
+
+  <section id="education">
+    <h2 class="section-title">Education</h2>
+    <ul>
+      <li>Bachelor's in Computer Science - University of Future Tech</li>
+    </ul>
+  </section>
+
+  <section id="contact">
+    <h2 class="section-title">Contact</h2>
+    <p>Email: angel.sola@example.com</p>
+    <p>Phone: +123 456 7890</p>
+  </section>
 </div>
+
+<footer class="animate__animated animate__fadeInUp">
+  <p>&copy; 2024 Angel Sola. Designed with Retro-Futuristic Inspiration.</p>
+</footer>
+
+<script src="scripts.js"></script>
 </body>
 </html>
