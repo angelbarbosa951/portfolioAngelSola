@@ -110,47 +110,76 @@ footer {
     color: #888;
     margin-top: 2rem;
 }
-/* Menú de Navegación */
+/* Estilo del navbar */
 .navbar {
-    background: linear-gradient(90deg, #1e1e2e, #2a3d66); /* Fondo degradado */
+    background: linear-gradient(90deg, #1e1e2e, #2a3d66);
     padding: 1rem 0;
-    text-align: center;
-    position: sticky; /* Fijo en la parte superior */
+    position: sticky;
     top: 0;
     z-index: 1000;
-    border-bottom: 3px solid #ff007c; /* Línea de separación */
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.5);
+    border-bottom: 3px solid #ff007c;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
 }
 
-.navbar ul {
+/* Botón del menú hamburguesa */
+.menu-toggle {
+    display: none;
+    background: none;
+    border: none;
+    color: #ff9d00;
+    font-size: 1.5rem;
+    cursor: pointer;
+}
+
+/* Links del menú */
+.nav-links {
     list-style: none;
+    display: flex;
+    gap: 2rem;
     margin: 0;
     padding: 0;
-    display: flex;
-    justify-content: center;
-    gap: 2rem; /* Espaciado entre enlaces */
 }
 
-.navbar ul li {
-    display: inline;
-}
-
-.navbar ul li a {
-    color: #ff9d00; /* Color del texto */
+.nav-links li a {
+    color: #ff9d00;
     text-decoration: none;
     font-size: 1.2rem;
-    font-family: 'Orbitron', sans-serif; /* Fuente consistente */
-    transition: color 0.3s ease; /* Transición suave */
+    transition: color 0.3s ease;
 }
 
-.navbar ul li a:hover {
-    color: #ff007c; /* Color al pasar el cursor */
-    text-shadow: 0 0 10px #ff007c; /* Efecto de brillo */
+.nav-links li a:hover {
+    color: #ff007c;
+    text-shadow: 0 0 10px #ff007c;
 }
 
-/* Enlace Activo */
-.navbar ul li a.active {
-    color: #00ff9d; /* Color del enlace activo */
-    text-decoration: underline;
-    font-weight: bold;
+/* Responsive para pantallas pequeñas */
+@media (max-width: 768px) {
+    .menu-toggle {
+        display: block;
+    }
+
+    .nav-links {
+        display: none;
+        flex-direction: column;
+        gap: 1rem;
+        position: absolute;
+        top: 100%;
+        right: 0;
+        background: rgba(30, 30, 46, 0.95);
+        padding: 1rem;
+        width: 100%;
+        box-shadow: 0 4px 10px rgba(0, 0, 0, 0.5);
+    }
+
+    .nav-links.show {
+        display: flex;
+    }
+
+    .nav-links li a {
+        font-size: 1rem;
+        text-align: center;
+    }
 }
+
