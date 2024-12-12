@@ -123,16 +123,18 @@ footer {
 /* Contenedor para centrar el menú */
 .nav-container {
     display: flex;
-    justify-content: space-between; /* Botón a la izquierda, menú a la derecha */
+    justify-content: center; /* Centra el menú horizontalmente */
     align-items: center;
     max-width: 1200px;
-    margin: 0 auto;
-    padding: 0 1rem;
+    margin: 0 auto; /* Centra el contenedor en la página */
+    position: relative; /* Necesario para el menú desplegable */
 }
 
 /* Botón de menú hamburguesa */
 .menu-toggle {
-    display: none;
+    display: none; /* Ocultar en escritorio */
+    position: absolute; /* Para ubicarlo a la izquierda en móvil */
+    left: 1rem;
     background: none;
     border: none;
     color: #ff9d00;
@@ -147,6 +149,7 @@ footer {
     gap: 2rem;
     margin: 0;
     padding: 0;
+    align-items: center;
 }
 
 .nav-links li a {
@@ -165,15 +168,15 @@ footer {
 /* Responsive para dispositivos móviles */
 @media (max-width: 768px) {
     .menu-toggle {
-        display: block; /* Muestra el botón hamburguesa */
+        display: block; /* Mostrar el botón hamburguesa */
     }
 
     .nav-links {
-        display: none;
-        flex-direction: column;
+        display: none; /* Ocultar enlaces por defecto */
+        flex-direction: column; /* Cambiar a formato vertical */
         gap: 1rem;
         position: absolute;
-        top: 100%;
+        top: 100%; /* Posiciona debajo de la barra */
         right: 0;
         background: rgba(30, 30, 46, 0.95);
         padding: 1rem;
