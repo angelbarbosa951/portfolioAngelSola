@@ -110,7 +110,7 @@ footer {
     color: #888;
     margin-top: 2rem;
 }
-/* Estilo del navbar */
+/* Navbar general */
 .navbar {
     background: linear-gradient(90deg, #1e1e2e, #2a3d66);
     padding: 1rem 0;
@@ -118,22 +118,19 @@ footer {
     top: 0;
     z-index: 1000;
     border-bottom: 3px solid #ff007c;
-    display: flex;
-    justify-content: center; /* Centra los elementos horizontalmente */
-    align-items: center;
 }
 
-/* Contenedor para centrar menú y botón */
+/* Contenedor para centrar el menú */
 .nav-container {
     display: flex;
-    justify-content: space-between; /* Espacio entre botón y enlaces */
+    justify-content: space-between; /* Botón a la izquierda, menú a la derecha */
     align-items: center;
-    width: 100%;
-    max-width: 1200px; /* Limita el ancho del menú */
-    padding: 0 1rem; /* Espaciado lateral */
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 1rem;
 }
 
-/* Botón del menú hamburguesa */
+/* Botón de menú hamburguesa */
 .menu-toggle {
     display: none;
     background: none;
@@ -143,7 +140,7 @@ footer {
     cursor: pointer;
 }
 
-/* Links del menú */
+/* Lista de enlaces */
 .nav-links {
     list-style: none;
     display: flex;
@@ -156,6 +153,7 @@ footer {
     color: #ff9d00;
     text-decoration: none;
     font-size: 1.2rem;
+    font-family: 'Orbitron', sans-serif;
     transition: color 0.3s ease;
 }
 
@@ -164,7 +162,7 @@ footer {
     text-shadow: 0 0 10px #ff007c;
 }
 
-/* Responsive para pantallas pequeñas */
+/* Responsive para dispositivos móviles */
 @media (max-width: 768px) {
     .menu-toggle {
         display: block; /* Muestra el botón hamburguesa */
