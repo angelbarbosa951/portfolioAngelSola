@@ -55,7 +55,7 @@ document.addEventListener("DOMContentLoaded", () => {
         const navLinks = document.querySelector(".nav-links");
 
         menuToggle.addEventListener("click", () => {
-            navLinks.classList.toggle("show"); // Muestra u oculta el menú
+            navLinks.classList.toggle("show"); // Muestra u oculta el menú desplegable
         });
 
         // Cierra el menú cuando se hace clic en un enlace
@@ -65,5 +65,6 @@ document.addEventListener("DOMContentLoaded", () => {
             }
         });
     });
+
 
 });
