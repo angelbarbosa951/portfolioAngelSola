@@ -1,3 +1,7 @@
+
+
+
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -8,6 +12,7 @@
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css">
   <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+  <script src="scripts.js" defer></script>
 </head>
 <body>
 <header class="animate__animated animate__fadeInDown">
@@ -18,7 +23,7 @@
 <nav class="navbar">
   <div class="nav-container">
     <button class="menu-toggle" aria-label="Abrir menú">
-      ☰
+      ⊜
     </button>
     <ul class="nav-links">
       <li><a href="#about">Sobre mí</a></li>
@@ -133,39 +138,5 @@
 <footer class="animate__animated animate__fadeInUp">
   <p>2024 Angel Sola.</p>
 </footer>
-
-<script>
-  document.addEventListener("DOMContentLoaded", () => {
-    const menuToggle = document.querySelector(".menu-toggle");
-    const navLinks = document.querySelector(".nav-links");
-
-    menuToggle.addEventListener("click", () => {
-      navLinks.classList.toggle("show");
-    });
-
-    const expandButtons = document.querySelectorAll(".expand-btn");
-    expandButtons.forEach((button) => {
-      button.addEventListener("click", (event) => {
-        const parentItem = event.target.closest("li");
-        const details = parentItem.querySelector(".skill-details, .experience-details, .project-details");
-
-        if (details.style.display === "block") {
-          details.style.display = "none";
-          button.textContent = "+";
-        } else {
-          document.querySelectorAll(".skill-details, .experience-details, .project-details").forEach(detail => {
-            detail.style.display = "none";
-          });
-          document.querySelectorAll(".expand-btn").forEach(btn => {
-            btn.textContent = "+";
-          });
-
-          details.style.display = "block";
-          button.textContent = "-";
-        }
-      });
-    });
-  });
-</script>
 </body>
 </html>

@@ -1,10 +1,16 @@
-/* JavaScript */
 document.addEventListener("DOMContentLoaded", () => {
     const menuToggle = document.querySelector(".menu-toggle");
     const navLinks = document.querySelector(".nav-links");
 
     menuToggle.addEventListener("click", () => {
         navLinks.classList.toggle("show");
+    });
+
+    navLinks.addEventListener("click", (event) => {
+        if (event.target.tagName === "A") {
+            navLinks.classList.remove("show");
+            menuToggle.focus(); // Vuelve el foco al botón del menú
+        }
     });
 
     const expandButtons = document.querySelectorAll(".expand-btn");
