@@ -1,4 +1,4 @@
-/* Retro-Futuristic Styles */
+/* CSS */
 body {
     background: linear-gradient(135deg, #1e1e2e, #2a3d66);
     color: #e0e0ff;
@@ -48,13 +48,6 @@ ul li {
     color: #fff;
     position: relative;
 }
-.skill-item {
-    cursor: pointer;
-    transition: background 0.3s;
-}
-.skill-item:hover {
-    background: #344b70;
-}
 .expand-btn {
     position: absolute;
     right: 10px;
@@ -74,33 +67,18 @@ ul li {
 .expand-btn:hover {
     background: #ff007c;
 }
-.skill-details {
+.skill-details, .experience-details, .project-details {
     display: none;
     padding: 0.5rem;
     background: rgba(255, 255, 255, 0.1);
     border-radius: 8px;
     margin-top: 0.5rem;
-}
-.experience-details {
-    display: none;
-    padding: 0.5rem;
-    background: rgba(255, 255, 255, 0.1);
-    border-radius: 8px;
-    margin-top: 0.5rem;
-}
-.project-details {
-    display: none;
-    padding: 0.5rem;
-    background: rgba(255, 255, 255, 0.1);
-    border-radius: 8px;
-    margin-top: 0.5rem;
-    text-align: center; /* Centra la imagen y el texto */
 }
 .project-image {
-    width: 300px; /* Ancho completo del contenedor */
-    height: 200px; /* Altura fija para uniformidad */
-    object-fit: cover; /* Ajusta la imagen dentro del espacio sin deformarla */
-    border-radius: 8px; /* Opcional: bordes redondeados para un diseño más atractivo */
+    width: 300px;
+    height: 200px;
+    object-fit: cover;
+    border-radius: 8px;
     margin: 10px 0;
 }
 footer {
@@ -110,7 +88,7 @@ footer {
     color: #888;
     margin-top: 2rem;
 }
-/* Navbar general */
+
 .navbar {
     background: linear-gradient(90deg, #1e1e2e, #2a3d66);
     padding: 1rem 0;
@@ -119,21 +97,17 @@ footer {
     z-index: 1000;
     border-bottom: 3px solid #ff007c;
 }
-
-/* Contenedor para centrar el menú */
 .nav-container {
     display: flex;
-    justify-content: center; /* Centra el menú horizontalmente */
+    justify-content: center;
     align-items: center;
     max-width: 1200px;
-    margin: 0 auto; /* Centra el contenedor en la página */
-    position: relative; /* Necesario para el menú desplegable */
+    margin: 0 auto;
+    position: relative;
 }
-
-/* Botón de menú hamburguesa */
 .menu-toggle {
-    display: none; /* Ocultar en escritorio */
-    position: absolute; /* Para ubicarlo a la izquierda en móvil */
+    display: none;
+    position: absolute;
     left: 1rem;
     background: none;
     border: none;
@@ -141,8 +115,6 @@ footer {
     font-size: 1.5rem;
     cursor: pointer;
 }
-
-/* Lista de enlaces */
 .nav-links {
     list-style: none;
     display: flex;
@@ -151,7 +123,6 @@ footer {
     padding: 0;
     align-items: center;
 }
-
 .nav-links li a {
     color: #ff9d00;
     text-decoration: none;
@@ -159,35 +130,29 @@ footer {
     font-family: 'Orbitron', sans-serif;
     transition: color 0.3s ease;
 }
-
 .nav-links li a:hover {
     color: #ff007c;
     text-shadow: 0 0 10px #ff007c;
 }
-
-/* Responsive para dispositivos móviles */
 @media (max-width: 768px) {
     .menu-toggle {
-        display: block; /* Mostrar el botón hamburguesa */
+        display: block;
     }
-
     .nav-links {
-        display: none; /* Ocultar enlaces por defecto */
-        flex-direction: column; /* Cambiar a formato vertical */
+        display: none;
+        flex-direction: column;
         gap: 1rem;
         position: absolute;
-        top: 100%; /* Posiciona debajo de la barra */
+        top: 100%;
         right: 0;
         background: rgba(30, 30, 46, 0.95);
         padding: 1rem;
         width: 100%;
         box-shadow: 0 4px 10px rgba(0, 0, 0, 0.5);
     }
-
     .nav-links.show {
         display: flex;
     }
-
     .nav-links li a {
         font-size: 1rem;
         text-align: center;
