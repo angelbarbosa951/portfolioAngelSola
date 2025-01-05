@@ -80,6 +80,13 @@ ul li {
     border-radius: 8px;
     margin: 10px 0;
 }
+.logo-image {
+    width: 75px;
+    height: 75px;
+    object-fit: cover;
+    border-radius: 8px;
+    margin: 10px 0;
+}
 footer {
     text-align: center;
     padding: 1rem;
