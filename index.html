@@ -1,153 +1,338 @@
-
-
-
-
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Portfolio - Angel Sola</title>
-  <link rel="stylesheet" href="styles.css">
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css">
-  <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
-  <script src="scripts.js" defer></script>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Portfolio - Àngel Solà</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"/>
+
+  <style>
+    :root{
+      --bg1:#0b1020;
+      --bg2:#1b2b63;
+      --card:#121a3d;
+      --text:#eef3ff;
+      --muted:#b8c3e6;
+      --primary:#7cf0ff;
+      --secondary:#ff73d2;
+      --accent:#ffd166;
+      --radius:16px;
+      --shadow:0 10px 30px rgba(0,0,0,.35);
+    }
+
+    *{box-sizing:border-box}
+    html,body{height:100%}
+    body{
+      margin:0;
+      font-family:"Inter", system-ui, sans-serif;
+      color:var(--text);
+      background: linear-gradient(135deg, var(--bg1), var(--bg2)) fixed;
+      line-height:1.6;
+    }
+
+    /* Header (no sticky) */
+    header{
+      text-align:center;
+      padding:1.5rem 1rem 1.2rem;
+      border-bottom:1px solid rgba(255,255,255,.08);
+      background:transparent;
+    }
+    header h1{ margin:0; font-size:clamp(1.6rem,3.2vw,2.4rem); font-weight:800; }
+    header p{ margin:.35rem 0 0; color:var(--muted) }
+
+    /* Navbar sticky y centrada */
+    .navbar{
+      position:sticky; top:0; z-index:100;
+      background: rgba(8,12,32,.75);
+      backdrop-filter: blur(6px);
+      border-bottom:1px solid rgba(255,255,255,.08);
+    }
+    .nav-container{
+      max-width:1100px; margin:0 auto; padding:.6rem 1rem;
+      display:flex; align-items:center; justify-content:center; position:relative;
+    }
+    /* Botón hamburguesa centrado en móvil */
+    .menu-toggle{
+      border:0; background:none; color:var(--text);
+      font-size:1.8rem; cursor:pointer; line-height:1;
+      display:none; /* oculto por defecto */
+    }
+    .menu-toggle::before{ content:"≡"; }
+
+    .nav-links{
+      list-style:none; display:flex; gap:1rem; padding:0; margin:0;
+      justify-content:center; align-items:center;
+    }
+    .nav-links a{
+      text-decoration:none; color:var(--muted); font-weight:600;
+      padding:.5rem .75rem; border-radius:999px;
+    }
+    .nav-links a:hover{ color:var(--text); background:rgba(255,255,255,.08); }
+
+    /* Móvil: mostrar hamburguesa centrada, ocultar enlaces hasta abrir */
+    @media (max-width: 820px){
+      .menu-toggle{ display:block; }
+      .nav-container{ flex-direction:column; gap:.5rem; }
+      .nav-links{
+        display:none; width:100%;
+        background:rgba(9,13,36,.98);
+        border-bottom-left-radius:var(--radius);
+        border-bottom-right-radius:var(--radius);
+        box-shadow:var(--shadow);
+        padding:.75rem; flex-direction:column;
+      }
+      .nav-links.show{ display:flex; }
+    }
+    /* Escritorio: sin hamburguesa, enlaces centrados */
+    @media (min-width: 821px){
+      .menu-toggle{ display:none; }
+      .nav-links{ display:flex; position:static; background:transparent; box-shadow:none; padding:0; }
+    }
+
+    /* Layout */
+    .container{ max-width:1100px; margin:1.2rem auto 3rem; padding:0 1rem; }
+    section{
+      background:rgba(255,255,255,.04);
+      border:1px solid rgba(255,255,255,.08);
+      border-radius:var(--radius); box-shadow:var(--shadow);
+      padding:clamp(1rem,2.2vw,1.6rem); margin-bottom:1rem;
+    }
+    .section-title{ margin:0 0 .6rem; font-size:clamp(1.2rem,2.4vw,1.5rem); font-weight:800; }
+
+    /* Items + acordeón simple */
+    ul{ list-style:none; padding:0; margin:0; }
+    li.item{
+      position:relative; margin:.6rem 0; background:var(--card);
+      border:1px solid rgba(255,255,255,.08); border-radius:12px;
+      padding:.85rem 2.75rem .85rem 1rem;
+    }
+    .expand-btn{
+      position:absolute; right:.6rem; top:50%; transform:translateY(-50%);
+      width:32px; height:32px; border-radius:999px; border:0; cursor:pointer;
+      font-weight:800; font-size:1rem; color:#0b0f1f;
+      background:linear-gradient(90deg, var(--primary), var(--secondary));
+    }
+    .details{ display:none; margin-top:.6rem; background:rgba(255,255,255,.06); border-radius:10px; padding:.7rem; }
+    .details.open{ display:block; }
+
+    /* Cards de proyectos mejoradas */
+    .projects-grid{ display:grid; gap:1.5rem; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); }
+    .project-card{
+      background:var(--card);
+      border:1px solid rgba(255,255,255,.1);
+      border-radius:18px; overflow:hidden; box-shadow:var(--shadow);
+      display:flex; flex-direction:column;
+      transition:transform .25s ease, box-shadow .25s ease;
+    }
+    .project-card:hover{ transform: translateY(-6px) scale(1.02); box-shadow:0 12px 40px rgba(0,0,0,.5); }
+    .project-img{ width:100%; aspect-ratio:16/10; object-fit:cover; transition: transform .3s ease; display:block; }
+    .project-card:hover .project-img{ transform: scale(1.05); }
+    .project-body{ padding:1rem; display:flex; flex-direction:column; flex-grow:1; }
+    .project-title{ margin:0 0 .4rem; font-size:1.15rem; font-weight:800; }
+    .project-body p{ flex-grow:1; margin:0 0 .8rem; color:var(--muted); font-size:.95rem; }
+    .project-actions{ margin-top:auto; display:flex; gap:.6rem; flex-wrap:wrap; }
+    .btn{
+      display:inline-flex; align-items:center; gap:.5rem; border:0; cursor:pointer;
+      padding:.55rem 1rem; border-radius:999px; font-weight:700; text-decoration:none;
+      color:#0b0f1f; background:linear-gradient(90deg, var(--primary), var(--accent));
+      transition:opacity .2s ease;
+    }
+    .btn:hover{ opacity:.85; }
+    .btn.ghost{ background:transparent; color:var(--text); border:1px solid rgba(255,255,255,.2); }
+
+    .logos{ display:flex; gap:.6rem; align-items:center; }
+    .logo{ width:28px; height:28px; object-fit:cover; border-radius:6px; }
+
+    footer{ text-align:center; color:var(--muted); padding:2rem 1rem; }
+
+    @media (prefers-reduced-motion: reduce){ *{animation:none !important; transition:none !important} }
+  </style>
 </head>
 <body>
-<header class="animate__animated animate__fadeInDown">
-  <h1><b>Àngel Solà</b></h1>
-  <p>Hola, te doy la bienvenida a mi Portfolio!</p>
-</header>
+  <header class="animate__animated animate__fadeInDown">
+    <h1><b>Àngel Solà</b></h1>
+    <p>Hola, te doy la bienvenida a mi Portfolio</p>
+  </header>
 
-<nav class="navbar">
-  <div class="nav-container">
-    <button class="menu-toggle" aria-label="Abrir menú">
-      ⊜
-    </button>
-    <ul class="nav-links">
-      <li><a href="#about">Sobre mí</a></li>
-      <li><a href="#skills">Skills</a></li>
-      <li><a href="#experience">Experiencia</a></li>
-      <li><a href="#education">Educación</a></li>
-      <li><a href="#projects">Proyectos</a></li>
-      <li><a href="#contact">Contacto</a></li>
-    </ul>
-  </div>
-</nav>
+  <nav class="navbar">
+    <div class="nav-container">
+      <button class="menu-toggle" aria-label="Abrir menú" aria-expanded="false" aria-controls="navlinks"></button>
+      <ul id="navlinks" class="nav-links" role="menubar">
+        <li role="none"><a role="menuitem" href="#about">Sobre mí</a></li>
+        <li role="none"><a role="menuitem" href="#skills">Skills</a></li>
+        <li role="none"><a role="menuitem" href="#experience">Experiencia</a></li>
+        <li role="none"><a role="menuitem" href="#education">Educación</a></li>
+        <li role="none"><a role="menuitem" href="#projects">Proyectos</a></li>
+        <li role="none"><a role="menuitem" href="#contact">Contacto</a></li>
+      </ul>
+    </div>
+  </nav>
 
-<div class="container animate__animated animate__fadeInUp">
-  <section id="about">
-    <h2 class="section-title">Sobre mí</h2>
-    <p>Actual estudiante de 2n de DAM con fuerte voluntad de trabajo, busco oportunidades para expandir mis habilidades como programador. Poseo experiencia previa en el sector de la hostelería, zelador y mecánico.
-      Esfuerzo máximo para adaptarme rápidamente y enfrentar los problemas con determinación.<br><br>
-      Además de mi compromiso con el trabajo, también realizo actividades deportivas frecuentemente. Durante varios
-      años he estado federado en remo y actualmente en espeleología, lo que demuestra mi dedicación y disciplina.</p>
-  </section>
+  <main class="container animate__animated animate__fadeInUp">
+    <section id="about">
+      <h2 class="section-title">Sobre mí</h2>
+      <p>Actual estudiante de 2º de DAM con fuerte voluntad de trabajo, busco oportunidades para expandir mis habilidades como programador. Poseo experiencia previa en hostelería, zelador y mecánico. Me esfuerzo por adaptarme rápidamente y enfrentar los problemas con determinación. Además, practico deporte con frecuencia: estuve federado en remo y actualmente en espeleología.</p>
+    </section>
 
-  <section id="skills">
-    <h2 class="section-title">Skills</h2>
-    <ul>
-      <li class="skill-item">Programación: Java, Python, Swift, JavaScript, HTML<button class="expand-btn">+</button>
-        <div class="skill-details">Especificado principalmente en Java, he trabajado también en diversos lenguajes de programación, aquí incluyo los más destacados entre ellos.</div>
-      </li>
-      <li class="skill-item">Bases de datos: MySQL, MongoDB<button class="expand-btn">+</button>
-        <div class="skill-details"></div>
-      </li>
-      <li class="skill-item">Herramientas de Diseño: Figma, XD <button class="expand-btn">+</button>
-        <div class="skill-details">Conocedor del uso y creación de mockups e wireframes mediante XD y Figma.</div>
-      </li>
-      <li class="skill-item">Frameworks: React, Node.js <button class="expand-btn">+</button>
-        <div class="skill-details"></div>
-      </li>
-      <li class="skill-item">Project Management: Agile, Scrum <button class="expand-btn">+</button>
-        <div class="skill-details">Conocedor de la gestión de proyectos mediante estas metodologías. También poseo conocimientos en Git.</div>
-      </li>
-    </ul>
-  </section>
+    <section id="skills">
+      <h2 class="section-title">Skills</h2>
+      <ul>
+        <li class="item"><strong>Programación:</strong> Java, Python, Swift, JavaScript, HTML
+          <button class="expand-btn" aria-expanded="false" aria-label="Mostrar detalles">+</button>
+          <div class="details" aria-hidden="true">
+            Especializado principalmente en Java; también he trabajado con otros lenguajes.
+          </div>
+        </li>
+        <li class="item"><strong>Bases de datos:</strong> MySQL, MongoDB
+          <button class="expand-btn" aria-expanded="false" aria-label="Mostrar detalles">+</button>
+          <div class="details" aria-hidden="true">Conexión, modelado y consultas básicas/intermedias.</div>
+        </li>
+        <li class="item"><strong>Herramientas de Diseño:</strong> Figma, XD
+          <button class="expand-btn" aria-expanded="false" aria-label="Mostrar detalles">+</button>
+          <div class="details" aria-hidden="true">Creación de wireframes y prototipos interactivos.</div>
+        </li>
+        <li class="item"><strong>Frameworks:</strong> React, Node.js
+          <button class="expand-btn" aria-expanded="false" aria-label="Mostrar detalles">+</button>
+          <div class="details" aria-hidden="true">Ecosistema JS para front y back.</div>
+        </li>
+        <li class="item"><strong>Project Management:</strong> Agile, Scrum
+          <button class="expand-btn" aria-expanded="false" aria-label="Mostrar detalles">+</button>
+          <div class="details" aria-hidden="true">Incluye control de versiones con Git.</div>
+        </li>
+      </ul>
+    </section>
 
-  <section id="experience">
-    <h2 class="section-title">Experiencia</h2>
-    <ul>
-      <li class="experience-item">Prácticas de Programador - BONDY<button class="expand-btn">+</button>
-        <div class="experience-details">Población: Barcelona | País: España (29/11/2024 - ACTUAL)<br><br>
-          - Automatización de Test<br>
-          - Resolución de bugs<br>
-          - Programador full stack<br>
-        </div>
-      </li>
-      <li class="experience-item">Mecánico electricista - HIFE<button class="expand-btn">+</button>
-        <div class="experience-details">
-          Población: Alcañiz | País: España (04/07/2024 - 02/08/2024)<br><br>
-          - Instalación de pantallas<br>
-          - Instalación de máquinas validadoras<br>
-          - Instalación de altavoces interiores y exteriores<br>
-          - Instalación de micrófonos<br>
-          - Instalación de botones<br>
-          - Instalación de cableado</div>
-      </li>
-      <li class="experience-item">Zelador - ICS CUAP del Temple<button class="expand-btn">+</button>
-        <div class="experience-details">
-          Población: Tortosa | País: España<br><br>
-          Función de zelador en periodo de guardia en caso de falta de algún administrador.
-        </div>
-      </li>
-      <li class="experience-item">Camarero - Villaretiro<button class="expand-btn">+</button>
-        <div class="experience-details">
-          Población: Tortosa | País: España (01/06/2023 - 15/07/2024)<br><br>
-          Trabajo eventual en bodas y celebraciones.</div>
-      </li>
-    </ul>
-  </section>
+    <section id="experience">
+      <h2 class="section-title">Experiencia Laboral</h2>
+      <ul>
+        <li class="item"><strong>Developer</strong> — BONDY
+          <button class="expand-btn" aria-expanded="false" aria-label="Mostrar detalles">+</button>
+          <div class="details" aria-hidden="true">Barcelona, España (2024–2025). Automatización con más de 200 escenarios. Resolución de bugs.</div>
+        </li>
+        <li class="item"><strong>Mecánico electricista</strong> — HIFE
+          <button class="expand-btn" aria-expanded="false" aria-label="Mostrar detalles">+</button>
+          <div class="details" aria-hidden="true">Alcañiz, España (04/07/2024 – 02/08/2024). Instalación de pantallas, validadores, altavoces, micrófonos, botones y cableado.</div>
+        </li>
+        <li class="item"><strong>Zelador</strong> — ICS CUAP del Temple
+          <button class="expand-btn" aria-expanded="false" aria-label="Mostrar detalles">+</button>
+          <div class="details" aria-hidden="true">Tortosa, España. Funciones de zelador en periodo de guardia.</div>
+        </li>
+      </ul>
+    </section>
 
-  <section id="education">
-    <h2 class="section-title">Educación y Formación</h2>
-    <ul>
-      <li>Ciclo superior en desarrollo de aplicaciones multiplataforma - Escola del Treball (14/09/2023 – Actual)</li>
-      <li>Bachillerato - Col·legi Sagrada Família (12/09/2020 – 20/06/2022)</li>
-      <li>ESO - Col·legi Sagrada Família (12/09/2016 – 20/06/2020)</li>
-    </ul>
-  </section>
+    <section id="education">
+      <h2 class="section-title">Educación y Formación</h2>
+      <ul>
+        <li class="item">Ingeniería Informática FIB (UPC) (2025 – actual)</li>
+        <li class="item">CFGS DAM — Escola del Treball (2023 – 2025)</li>
+        <li class="item">Bachillerato — Col·legi Sagrada Família (2020 – 2022)</li>
+      </ul>
+    </section>
 
-  <section id="projects">
-    <h2 class="section-title">Mis proyectos</h2>
-    <ul>
-      <li class="project-item">RLS 2D Game Adventure<button class="expand-btn">+</button>
-        <div class="project-details">
-          <img src="resources/images/2d1.png" alt="Juego 2D" class="project-image">
-          <img src="resources/images/2d2.png" alt="Juego 2D" class="project-image">
-          <p>Juego en 2D solo con Java, sin usar librerías. Es un proyecto seguido de varios tutoriales que me enseñaron el diseño, optimización y realización de este tipo de juegos.</p>
-          <p>Para ver mas detalladamente:</p>
-          <a href="https://github.com/angelbarbosa951/game2D.git" target="_blank">
-            <img src="resources/images/git.png" class="logo-image">
-          </a>
-        </div>
-      </li>
-      <li class="project-item">Sistema de Gestión de Hotel<button class="expand-btn">+</button>
-        <div class="project-details">
-          <img src="resources/images/hotel1.png" alt="Sistema de gestion" class="project-image">
-          <p>Trabajo donde integro controladores JDBC, con una base de datos en local MySQL. Front hecho en JSP y back en Java.</p>
-          <p>Para ver mas detalladamente:</p>
-          <a href="https://gitlab.inf.edt.cat/dam/abp-24-25/abp1-hotel/g6.git" target="_blank">
-            <img src="resources/images/gitlab.png" class="logo-image">
-          </a>
-        </div>
-      </li>
-    </ul>
-  </section>
+    <section id="projects">
+      <h2 class="section-title">Mis proyectos</h2>
+      <div class="projects-grid">
+        <article class="project-card">
+          <img class="project-img" src="resources/images/2d1.png" alt="RLS 2D Game Adventure" loading="lazy"/>
+          <div class="project-body">
+            <h3 class="project-title">RLS 2D Game Adventure</h3>
+            <p>Juego 2D hecho solo con Java (sin librerías externas).</p>
+            <div class="project-actions">
+              <a class="btn" href="https://github.com/angelbarbosa951/game2D" target="_blank" rel="noopener">Ver repositorio</a>
+              <a class="btn ghost" href="#" onclick="openGallery(['resources/images/2d1.png','resources/images/2d2.png']);return false;">Ver capturas</a>
+            </div>
+          </div>
+        </article>
+        <article class="project-card">
+          <img class="project-img" src="resources/images/hotel1.png" alt="Sistema de Gestión de Hotel" loading="lazy"/>
+          <div class="project-body">
+            <h3 class="project-title">Sistema de Gestión de Hotel</h3>
+            <p>JSP + Java (JDBC) con base de datos MySQL local.</p>
+            <div class="project-actions">
+              <a class="btn" href="https://gitlab.inf.edt.cat/dam/abp-24-25/abp1-hotel/g6" target="_blank" rel="noopener">Ver repositorio</a>
+            </div>
+          </div>
+        </article>
+      </div>
+    </section>
 
-  <section id="contact">
-    <h2 class="section-title">Contacto</h2>
-    <p>Email: angelsola2004@gmail.com</p>
-    <p>Phone: +34 674-933-160</p>
-    <a href="https://www.linkedin.com/in/angel-sol%C3%A0-fust%C3%A9-b3229a332"  target="_blank">
-      <img src="resources/images/linkedin.png" class="logo-image">
-    </a>
-  </section>
-</div>
+    <section id="contact">
+      <h2 class="section-title">Contacto</h2>
+      <p>Email: <a href="mailto:angelsola2004@gmail.com" style="color:var(--primary)">angelsola2004@gmail.com</a></p>
+      <p>Teléfono: <a href="tel:+34674933160" style="color:var(--primary)">+34 674 933 160</a></p>
+      <div class="logos">
+        <a href="https://www.linkedin.com/in/angel-sol%C3%A0-fust%C3%A9-b3229a332" target="_blank" rel="noopener">
+          <img class="logo" src="resources/images/linkedin.png" alt="LinkedIn" loading="lazy" />
+        </a>
+        <a href="https://github.com/angelbarbosa951" target="_blank" rel="noopener">
+          <img class="logo" src="resources/images/git.png" alt="GitHub" loading="lazy" />
+        </a>
+      </div>
+    </section>
+  </main>
 
-<footer class="animate__animated animate__fadeInUp">
-  <p>2024 Àngel Solà.</p>
-</footer>
+  <footer>
+    <p>2024–2025 © Àngel Solà</p>
+  </footer>
+
+  <script>
+    // NAV
+    const menuToggle = document.querySelector('.menu-toggle');
+    const navLinks = document.querySelector('.nav-links');
+    menuToggle.addEventListener('click', () => {
+      const open = navLinks.classList.toggle('show');
+      menuToggle.setAttribute('aria-expanded', String(open));
+      if(open){ navLinks.querySelector('a')?.focus(); }
+    });
+    navLinks.addEventListener('click', (e) => {
+      if(e.target.tagName === 'A'){
+        navLinks.classList.remove('show');
+        menuToggle.setAttribute('aria-expanded','false');
+      }
+    });
+
+    // Acordeón simple
+    document.querySelectorAll('.expand-btn').forEach((btn) => {
+      btn.addEventListener('click', () => {
+        const details = btn.parentElement.querySelector('.details');
+        const open = !details.classList.contains('open');
+        document.querySelectorAll('.details').forEach(d=>d.classList.remove('open'));
+        document.querySelectorAll('.expand-btn').forEach(b=>b.textContent = '+');
+        if(open){ details.classList.add('open'); btn.textContent = '−'; }
+      });
+    });
+
+    // Galería simple
+    function openGallery(srcs){
+      const overlay = document.createElement('div');
+      overlay.style.cssText = `position:fixed;inset:0;background:rgba(0,0,0,.8);display:grid;place-items:center;z-index:9999`;
+      const wrap = document.createElement('div');
+      wrap.style.cssText = `max-width:min(1000px,95vw);max-height:85vh;display:grid;gap:.6rem`;
+      const closeBtn = document.createElement('button');
+      closeBtn.textContent = 'Cerrar';
+      closeBtn.className = 'btn';
+      closeBtn.style.justifySelf = 'end';
+      const img = document.createElement('img');
+      img.src = srcs[0];
+      img.alt = 'Captura de proyecto';
+      img.style.cssText = 'width:100%;height:auto;border-radius:12px;box-shadow:var(--shadow)';
+      const thumbs = document.createElement('div');
+      thumbs.style.cssText = 'display:flex;gap:.5rem;flex-wrap:wrap';
+      srcs.forEach(s=>{
+        const t=document.createElement('img'); t.src=s; t.alt='Miniatura'; t.loading='lazy';
+        t.style.cssText='width:110px;height:70px;object-fit:cover;border-radius:8px;border:1px solid rgba(255,255,255,.2);cursor:pointer';
+        t.addEventListener('click',()=> img.src=s);
+        thumbs.appendChild(t);
+      });
+      closeBtn.addEventListener('click',()=>overlay.remove());
+      overlay.addEventListener('click',(e)=>{ if(e.target===overlay) overlay.remove(); });
+      wrap.append(closeBtn,img,thumbs); overlay.append(wrap); document.body.append(overlay);
+    }
+    window.openGallery = openGallery;
+  </script>
 </body>
 </html>
