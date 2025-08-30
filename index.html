@@ -183,6 +183,16 @@
   </p>
   <a href="#" class="btn ghost" onclick="openAboutPopup();return false;">+ Más sobre mí</a>
 </section>
+<section id="about">
+  <h2 class="section-title">Sobre mí</h2>
+  <p>
+    Graduado de CFGS en Desarrollo de Aplicaciones Multiplataforma (DAM) y actualmente estudiante de Ingeniería Informática. 
+    Busco oportunidades para seguir creciendo como programador y profesional en el ámbito tecnológico. 
+    Poseo experiencia laboral previa en el sector, específicamente en Java y Gherkin. 
+    Además, practico deporte con frecuencia: estuve federado en remo y actualmente practico espeleología y enduro.
+  </p>
+  <a href="#" class="btn ghost" onclick="openAboutPopup();return false;">+ Más sobre mí</a>
+</section>
 
 <script>
 function openAboutPopup(){
@@ -235,7 +245,20 @@ function openAboutPopup(){
     gallery.appendChild(img);
   });
 
-  modal.append(closeBtn, desc, gallery);
+  const instaLink = document.createElement('a');
+  instaLink.href = "https://www.instagram.com/angel_sola_?igsh=b2l3aWsxcWJ5czJ3&utm_source=qr"; 
+  instaLink.textContent = "👉 Ver más en mi Instagram";
+  instaLink.target = "_blank";
+  instaLink.rel = "noopener";
+  instaLink.style.cssText = `
+    color:var(--primary);
+    font-weight:600;
+    text-align:center;
+    margin-top:0.5rem;
+    text-decoration:none;
+  `;
+
+  modal.append(closeBtn, desc, gallery, instaLink);
   overlay.appendChild(modal);
   document.body.appendChild(overlay);
 
