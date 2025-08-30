@@ -174,34 +174,100 @@
 
   <main class="container animate__animated animate__fadeInUp">
     <section id="about">
-      <h2 class="section-title">Sobre mí</h2>
-      <p>Actual estudiante de 2º de DAM con fuerte voluntad de trabajo, busco oportunidades para expandir mis habilidades como programador. Poseo experiencia previa en hostelería, zelador y mecánico. Me esfuerzo por adaptarme rápidamente y enfrentar los problemas con determinación. Además, practico deporte con frecuencia: estuve federado en remo y actualmente en espeleología.</p>
-    </section>
+  <h2 class="section-title">Sobre mí</h2>
+  <p>
+    Graduado de CFGS en Desarrollo de Aplicaciones Multiplataforma (DAM) y actualmente estudiante de Ingeniería Informática. 
+    Busco oportunidades para seguir creciendo como programador y profesional en el ámbito tecnológico. 
+    Poseo experiencia laboral previa en el sector, específicamente en Java y Gherkin. 
+    Además, practico deporte con frecuencia: estuve federado en remo y actualmente practico espeleología y enduro.
+  </p>
+  <a href="#" class="btn ghost" onclick="openAboutPopup();return false;">+ Más sobre mí</a>
+</section>
+
+<script>
+function openAboutPopup(){
+  const overlay = document.createElement('div');
+  overlay.style.cssText = `
+    position:fixed;inset:0;z-index:9999;
+    background:rgba(0,0,0,.85);display:grid;place-items:center;
+    padding:1rem;overflow:auto;
+  `;
+
+  const modal = document.createElement('div');
+  modal.style.cssText = `
+    background:#121a3d;border-radius:16px;max-width:900px;width:95%;
+    padding:1.5rem;color:#eef3ff;box-shadow:0 10px 40px rgba(0,0,0,.5);
+    display:grid;gap:1.2rem;
+  `;
+
+  const closeBtn = document.createElement('button');
+  closeBtn.textContent = "Cerrar";
+  closeBtn.className = "btn";
+  closeBtn.style.justifySelf = "end";
+  closeBtn.addEventListener('click',()=>overlay.remove());
+
+  const desc = document.createElement('p');
+  desc.textContent = "Aquí comparto algunas imágenes de mis aficiones: el enduro, el descenso de barrancos, la espeleología y los caballos que cuidamos en la finca familiar.";
+
+  const gallery = document.createElement('div');
+  gallery.style.cssText = `
+    display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));
+    gap:1rem;
+  `;
+
+  const fotos = [
+    "resources/images/mifoto1.jpg",
+    "resources/images/mifoto2.jpg",
+    "resources/images/mifoto3.jpg",
+    "resources/images/mifoto4.jpg",
+    "resources/images/mifoto5.jpg",
+    "resources/images/mifoto6.jpg",
+    "resources/images/mifoto7.jpg",
+    "resources/images/mifoto8.jpg"
+  ];
+
+  fotos.forEach(src=>{
+    const img=document.createElement('img');
+    img.src=src;
+    img.alt="Foto personal";
+    img.loading="lazy";
+    img.style.cssText="width:100%;height:200px;object-fit:cover;border-radius:12px";
+    gallery.appendChild(img);
+  });
+
+  modal.append(closeBtn, desc, gallery);
+  overlay.appendChild(modal);
+  document.body.appendChild(overlay);
+
+  // Cierra haciendo click fuera del modal
+  overlay.addEventListener('click',e=>{
+    if(e.target===overlay) overlay.remove();
+  });
+}
+</script>
+
 
     <section id="skills">
       <h2 class="section-title">Skills</h2>
       <ul>
-        <li class="item"><strong>Programación:</strong> Java, Python, Swift, JavaScript, HTML
-          <button class="expand-btn" aria-expanded="false" aria-label="Mostrar detalles">+</button>
-          <div class="details" aria-hidden="true">
-            Especializado principalmente en Java; también he trabajado con otros lenguajes.
-          </div>
+        <li class="item"><strong>Java (especialización):</strong> 
+          Perfil <b>junior</b> con 10 meses de experiencia profesional desarrollando un proyecto de automatización de test con 
+          <b>Appium</b> y <b>Cucumber</b> (más de 200 escenarios).  
+          También he creado <b>APIs</b> con <b>Spring Boot</b>, optimizando parámetros, aplicando una estructura profesional y gestionando la seguridad mediante <b>tokens de autorización</b>, preparadas para un uso real en entornos de producción.
         </li>
-        <li class="item"><strong>Bases de datos:</strong> MySQL, MongoDB
-          <button class="expand-btn" aria-expanded="false" aria-label="Mostrar detalles">+</button>
-          <div class="details" aria-hidden="true">Conexión, modelado y consultas básicas/intermedias.</div>
+        <li class="item"><strong>Bases de datos:</strong> 
+          Experiencia con <b>MySQL</b> en entorno profesional.  
+          Conocimientos de bases de datos no relacionales como <b>Firebase</b> y <b>MongoDB</b> en proyectos propios.
         </li>
-        <li class="item"><strong>Herramientas de Diseño:</strong> Figma, XD
-          <button class="expand-btn" aria-expanded="false" aria-label="Mostrar detalles">+</button>
-          <div class="details" aria-hidden="true">Creación de wireframes y prototipos interactivos.</div>
+        <li class="item"><strong>Frameworks y librerías:</strong> 
+          Desarrollo de aplicaciones con <b>React</b> y <b>React Native</b>, así como <b>Node.js</b> para backend.
         </li>
-        <li class="item"><strong>Frameworks:</strong> React, Node.js
-          <button class="expand-btn" aria-expanded="false" aria-label="Mostrar detalles">+</button>
-          <div class="details" aria-hidden="true">Ecosistema JS para front y back.</div>
+        <li class="item"><strong>Herramientas:</strong> 
+          Uso habitual de <b>Git</b> y plataformas como <b>GitHub/GitLab</b>.  
+          Diseño de interfaces con <b>Figma</b>.
         </li>
-        <li class="item"><strong>Project Management:</strong> Agile, Scrum
-          <button class="expand-btn" aria-expanded="false" aria-label="Mostrar detalles">+</button>
-          <div class="details" aria-hidden="true">Incluye control de versiones con Git.</div>
+        <li class="item"><strong>Metodologías:</strong> 
+          Trabajo en equipo bajo enfoques <b>Agile</b> y <b>Scrum</b>.
         </li>
       </ul>
     </section>
@@ -229,7 +295,7 @@
       <ul>
         <li class="item">Ingeniería Informática FIB (UPC) (2025 – actual)</li>
         <li class="item">CFGS DAM — Escola del Treball (2023 – 2025)</li>
-        <li class="item">Bachillerato — Col·legi Sagrada Família (2020 – 2022)</li>
+        <li class="item">Bachillerato — Col·legi Sagrada Família Tortosa (2020 – 2022)</li>
       </ul>
     </section>
 
@@ -281,7 +347,6 @@
   </footer>
 
   <script>
-    // NAV
     const menuToggle = document.querySelector('.menu-toggle');
     const navLinks = document.querySelector('.nav-links');
     menuToggle.addEventListener('click', () => {
@@ -296,7 +361,6 @@
       }
     });
 
-    // Acordeón simple
     document.querySelectorAll('.expand-btn').forEach((btn) => {
       btn.addEventListener('click', () => {
         const details = btn.parentElement.querySelector('.details');
@@ -307,7 +371,6 @@
       });
     });
 
-    // Galería simple
     function openGallery(srcs){
       const overlay = document.createElement('div');
       overlay.style.cssText = `position:fixed;inset:0;background:rgba(0,0,0,.8);display:grid;place-items:center;z-index:9999`;
@@ -320,7 +383,7 @@
       const img = document.createElement('img');
       img.src = srcs[0];
       img.alt = 'Captura de proyecto';
-      img.style.cssText = 'width:100%;height:auto;border-radius:12px;box-shadow:var(--shadow)';
+      img.style.cssText = 'width:800px;height:500px;object-fit:contain;border-radius:12px;box-shadow:var(--shadow)';
       const thumbs = document.createElement('div');
       thumbs.style.cssText = 'display:flex;gap:.5rem;flex-wrap:wrap';
       srcs.forEach(s=>{
