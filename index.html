@@ -146,7 +146,35 @@
 
     .logos{ display:flex; gap:.6rem; align-items:center; }
     .logo{ width:28px; height:28px; object-fit:cover; border-radius:6px; }
-
+    #skills details.item {
+  margin:.6rem 0;
+  background:var(--card);
+  border:1px solid rgba(255,255,255,.08);
+  border-radius:12px;
+  padding:.2rem .2rem;
+}
+#skills details.item > summary {
+  list-style:none;
+  cursor:pointer;
+  padding:.85rem 2.75rem .85rem 1rem;
+  position:relative;
+  font-weight:700;
+}
+#skills details.item > summary::-webkit-details-marker { display:none; }
+#skills details.item > summary::after{
+  content:"+";
+  position:absolute; right:.6rem; top:50%; transform:translateY(-50%);
+  width:32px;height:32px;border-radius:999px;display:grid;place-items:center;
+  background:linear-gradient(90deg, var(--primary), var(--secondary));
+  color:#0b0f1f; font-weight:800;
+}
+#skills details[open] > summary::after{ content:"−"; }
+#skills .details{
+  margin:.2rem 1rem 1rem;
+  background:rgba(255,255,255,.06);
+  border-radius:10px;
+  padding:.7rem;
+}
     footer{ text-align:center; color:var(--muted); padding:2rem 1rem; }
 
     @media (prefers-reduced-motion: reduce){ *{animation:none !important; transition:none !important} }
@@ -174,16 +202,6 @@
 
   <main class="container animate__animated animate__fadeInUp">
     <section id="about">
-  <h2 class="section-title">Sobre mí</h2>
-  <p>
-    Graduado de CFGS en Desarrollo de Aplicaciones Multiplataforma (DAM) y actualmente estudiante de Ingeniería Informática. 
-    Busco oportunidades para seguir creciendo como programador y profesional en el ámbito tecnológico. 
-    Poseo experiencia laboral previa en el sector, específicamente en Java y Gherkin. 
-    Además, practico deporte con frecuencia: estuve federado en remo y actualmente practico espeleología y enduro.
-  </p>
-  <a href="#" class="btn ghost" onclick="openAboutPopup();return false;">+ Más sobre mí</a>
-</section>
-<section id="about">
   <h2 class="section-title">Sobre mí</h2>
   <p>
     Graduado de CFGS en Desarrollo de Aplicaciones Multiplataforma (DAM) y actualmente estudiante de Ingeniería Informática. 
@@ -271,29 +289,45 @@ function openAboutPopup(){
 
 
     <section id="skills">
-      <h2 class="section-title">Skills</h2>
-      <ul>
-        <li class="item"><strong>Java (especialización):</strong> 
-          Perfil <b>junior</b> con 10 meses de experiencia profesional desarrollando un proyecto de automatización de test con 
-          <b>Appium</b> y <b>Cucumber</b> (más de 200 escenarios).  
-          También he creado <b>APIs</b> con <b>Spring Boot</b>, optimizando parámetros, aplicando una estructura profesional y gestionando la seguridad mediante <b>tokens de autorización</b>, preparadas para un uso real en entornos de producción.
-        </li>
-        <li class="item"><strong>Bases de datos:</strong> 
-          Experiencia con <b>MySQL</b> en entorno profesional.  
-          Conocimientos de bases de datos no relacionales como <b>Firebase</b> y <b>MongoDB</b> en proyectos propios.
-        </li>
-        <li class="item"><strong>Frameworks y librerías:</strong> 
-          Desarrollo de aplicaciones con <b>React</b> y <b>React Native</b>, así como <b>Node.js</b> para backend.
-        </li>
-        <li class="item"><strong>Herramientas:</strong> 
-          Uso habitual de <b>Git</b> y plataformas como <b>GitHub/GitLab</b>.  
-          Diseño de interfaces con <b>Figma</b>.
-        </li>
-        <li class="item"><strong>Metodologías:</strong> 
-          Trabajo en equipo bajo enfoques <b>Agile</b> y <b>Scrum</b>.
-        </li>
-      </ul>
-    </section>
+  <h2 class="section-title">Skills</h2>
+
+  <details class="item">
+    <summary><strong>Java (especialización)</strong></summary>
+    <div class="details open">
+      Perfil <b>junior</b> con 10 meses de experiencia profesional: automatización de test con <b>Appium</b> y <b>Cucumber</b> (+200 escenarios). 
+      Desarrollo de <b>APIs</b> con <b>Spring Boot</b> (optimización de parámetros, estructura profesional y seguridad con <b>tokens de autorización</b>).
+    </div>
+  </details>
+
+  <details class="item">
+    <summary><strong>Bases de datos</strong></summary>
+    <div class="details open">
+      <b>MySQL</b> (experiencia profesional). <b>Firebase</b> y <b>MongoDB</b> (proyectos propios).
+    </div>
+  </details>
+
+  <details class="item">
+    <summary><strong>Frameworks & librerías</strong></summary>
+    <div class="details open">
+      <b>React</b>, <b>React Native</b>.
+    </div>
+  </details>
+
+  <details class="item">
+    <summary><strong>Herramientas</strong></summary>
+    <div class="details open">
+      <b>Git</b> (GitHub/GitLab), <b>Figma</b>.
+    </div>
+  </details>
+
+  <details class="item">
+    <summary><strong>Metodologías</strong></summary>
+    <div class="details open">
+      <b>Agile</b>, <b>Scrum</b>.
+    </div>
+  </details>
+</section>
+
 
     <section id="experience">
       <h2 class="section-title">Experiencia Laboral</h2>
@@ -332,18 +366,18 @@ function openAboutPopup(){
             <p>Juego 2D hecho solo con Java (sin librerías externas).</p>
             <div class="project-actions">
               <a class="btn" href="https://github.com/angelbarbosa951/game2D" target="_blank" rel="noopener">Ver repositorio</a>
-              <a class="btn ghost" href="#" onclick="openGallery(['resources/images/2d1.png','resources/images/2d2.png']);return false;">Ver capturas</a>
+              <a class="btn ghost" href="#" onclick="openGallery(['resources/images/2d1.png','resources/images/2d2.jpg']);return false;">Ver capturas</a>
             </div>
           </div>
         </article>
         <article class="project-card">
-          <img class="project-img" src="resources/images/yaya.png" alt="YAYA" loading="lazy"/>
+          <img class="project-img" src="resources/images/yaya.jpg" alt="YAYA" loading="lazy"/>
           <div class="project-body">
             <h3 class="project-title">YAYA</h3>
             <p>Aplicacion que lee recetas en remoto, desarrolada en react native y firebase, también hay api con hibernate disponible</p>
             <div class="project-actions">
               <a class="btn" href="https://gitlab.inf.edt.cat/dam/abp-24-25/abp1-hotel/g6" target="_blank" rel="noopener">Ver repositorio</a>
-              <a class="btn ghost" href="#" onclick="openGallery(['resources/images/yaya.png','resources/images/yaya1.png']);return false;">Ver capturas</a>
+              <a class="btn ghost" href="#" onclick="openGallery(['resources/images/yaya.jpg','resources/images/yaya1.jpg']);return false;">Ver capturas</a>
             </div>
           </div>
         </article>
